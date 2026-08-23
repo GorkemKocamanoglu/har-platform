@@ -11,6 +11,15 @@ pluginManagement {
     includeBuild("$flutterSdkPath/packages/flutter_tools/gradle")
 
     repositories {
+        maven {
+    url = uri("https://maven.pkg.github.com/facebook/meta-wearables-dat-android")
+    credentials {
+        username = ""  // PAT carries the identity
+        password = System.getenv("GITHUB_TOKEN")
+            ?: providers.gradleProperty("github_token").orNull
+            ?: ""
+    }
+}
         google()
         mavenCentral()
         gradlePluginPortal()
